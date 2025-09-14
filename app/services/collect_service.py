@@ -44,7 +44,7 @@ class CollectAndSellService:
         region_topleft: Tuple[int, int] = (795, 373),
         region_bottomright: Tuple[int, int] = (1121, 519),
         template_path: Path = Path("app/data/template/green.png"),
-        template_thresh: float = 0.80,
+        template_thresh: float = 0.85,
         coords_path: str = "app/data/coordinates.json",
         log_callback: Optional[Callable[[str], None]] = None,
         hotkey: Optional[str] = "f1",
