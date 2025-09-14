@@ -18,6 +18,30 @@ CONFIG_PATH = Path("app/data/config.json")
 SELECTED_PATH = Path("app/data/selecteditems.json")
 
 
+COORDS = {
+    "a":  (952, 427), "a1": (940, 472), "a2": (950, 512),
+    "b":  (886, 392), "b1": (926, 391), "b2": (957, 391), "b3": (997, 391),
+}
+
+# Bu listeyi sen dolduracaksın. Anahtar: item adı (küçük harf), Değer: a/b varyantı
+# Örnekler:
+SPECIAL = {
+    "Emerald": {"a": "a2"},            # Emerald için a2 tıklansın
+    "Nether Wart": {"a": "a1", "b": "b2"}, 
+    "Snow Block": {"b": "b1"}, 
+    "Plasma": {"a": "a1"}, 
+    
+    
+    
+    
+    
+    # "nether wart": {"b": "b2"},  
+    
+    # "some item": {"a": "a1", "b": "b3"},
+}
+
+SPECIAL = { (k or "").strip().lower(): v for k, v in SPECIAL.items() }
+
 def _safe_read_interval() -> float:
     """
     app/data/config.json içinden fastsell.interval'ı güvenle okur.
@@ -40,6 +64,9 @@ def _safe_read_interval() -> float:
 
 
 class BuyService:
+    
+
+
     """
     selecteditems.json içindeki her item için sırasıyla Buy Order otomasyonu.
 
@@ -91,6 +118,11 @@ class BuyService:
             self.log(f"Kısayol eklenemedi: {e}")
 
     # ---------- Public API ----------
+    def _pick(self, name_lc: str, group: str) -> tuple[int, int]:
+        # group "a" veya "b" gelecek. default "a"/"b", SPECIAL varsa a1/a2 veya b1/b2/b3
+        variant = SPECIAL.get(name_lc, {}).get(group, group)
+        return COORDS[variant]
+
     def start(self):
         if self._thread and self._thread.is_alive():
             return
@@ -163,8 +195,9 @@ class BuyService:
         self._type(name)
 
         # 3-6) Dört farklı tıklama sırası
-        self._click(self.c_a, "a")
-        self._click(self.c_b, "b")
+        name_lc = (name or "").strip().lower()
+        self._click(self._pick(name_lc, "a"), "a*")
+        self._click(self._pick(name_lc, "b"), "b*")
         self._click(self.c_c, "c")
         self._click(self.c_d, "d")
 

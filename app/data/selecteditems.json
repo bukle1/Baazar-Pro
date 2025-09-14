@@ -3,68 +3,68 @@
     {
       "id": "ARACHNE_KEEPER_FRAGMENT",
       "name": "Arachne's Calling",
-      "expected_amount": 488
-    },
-    {
-      "id": "BRONZE_BOWL",
-      "name": "Bronze Bowl",
-      "expected_amount": 35
+      "expected_amount": 734
     },
     {
       "id": "CUP_OF_BLOOD",
       "name": "Cup of Blood",
-      "expected_amount": 1152
+      "expected_amount": 1725
     },
     {
-      "id": "ENCHANTED_SAND",
-      "name": "Enchanted Sand",
-      "expected_amount": 1181
+      "id": "EMERALD",
+      "name": "Emerald",
+      "expected_amount": 14395
+    },
+    {
+      "id": "LUMP_OF_MAGMA",
+      "name": "Lump of Magma",
+      "expected_amount": 1992
     },
     {
       "id": "MAGMA_CHUNK",
       "name": "Magma Chunk",
-      "expected_amount": 710
+      "expected_amount": 1138
     },
     {
       "id": "MOOGMA_PELT",
       "name": "Moogma Pelt",
-      "expected_amount": 2671
-    },
-    {
-      "id": "MUTATED_BLAZE_ASHES",
-      "name": "Mutated Blaze Ashes",
-      "expected_amount": 74
+      "expected_amount": 3970
     },
     {
       "id": "NETHER_STALK",
       "name": "Nether Wart",
-      "expected_amount": 14460
+      "expected_amount": 24161
+    },
+    {
+      "id": "PLASMA",
+      "name": "Plasma",
+      "expected_amount": 47
     },
     {
       "id": "PRISMARINE_SHARD",
       "name": "Prismarine Shard",
-      "expected_amount": 3833
+      "expected_amount": 5714
     },
     {
-      "id": "RABBIT_HIDE",
-      "name": "Rabbit Hide",
-      "expected_amount": 813
+      "id": "PYROCLASTIC_SCALE",
+      "name": "Pyroclastic Scale",
+      "expected_amount": 106
     },
     {
       "id": "SAND:1",
       "name": "Red Sand",
-      "expected_amount": 3738
+      "expected_amount": 6015
     },
     {
       "id": "SNOW_BLOCK",
       "name": "Snow Block",
-      "expected_amount": 3629
+      "expected_amount": 5851
     },
     {
       "id": "UNDEAD_CATALYST",
       "name": "Undead Catalyst",
-      "expected_amount": 21
+      "expected_amount": 32
     }
   ],
-  "saved_at": 1757847614
+  "saved_at": 1757849808
 }

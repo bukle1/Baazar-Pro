@@ -219,7 +219,7 @@ class CollectAndSellService:
                 if not self._match_and_click_center(frame, tpl):
                     break
                 safety += 1
-                if safety > 50:
+                if safety > 5:
                     self.log(f"Uyarı: {tpl.name} için güvenlik sınırı aşıldı.")
                     break
 

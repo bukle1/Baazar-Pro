@@ -253,7 +253,7 @@ class MainWindow(QMainWindow):
         # --- expected amount heuristics ---
         # Toplam saatlik likiditenin (min(hourly_buy, hourly_sell)) %2'si kadar öner.
         # UI'dan ileride ayarlanabilir hale getirmek için şimdilik sabit tutuyoruz.
-        self.expected_pct_of_hourly = 0.20
+        self.expected_pct_of_hourly = 0.30
         self.expected_min_units = 1
 
         # --- selections storage ---
