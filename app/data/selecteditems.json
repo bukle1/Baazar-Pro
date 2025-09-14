@@ -3,7 +3,7 @@
     {
       "id": "ARACHNE_KEEPER_FRAGMENT",
       "name": "Arachne's Calling",
-      "expected_amount": 490
+      "expected_amount": 488
     },
     {
       "id": "BRONZE_BOWL",
@@ -18,17 +18,12 @@
     {
       "id": "ENCHANTED_SAND",
       "name": "Enchanted Sand",
-      "expected_amount": 1185
-    },
-    {
-      "id": "LUMP_OF_MAGMA",
-      "name": "Lump of Magma",
-      "expected_amount": 1839
+      "expected_amount": 1181
     },
     {
       "id": "MAGMA_CHUNK",
       "name": "Magma Chunk",
-      "expected_amount": 726
+      "expected_amount": 710
     },
     {
       "id": "MOOGMA_PELT",
@@ -43,53 +38,33 @@
     {
       "id": "NETHER_STALK",
       "name": "Nether Wart",
-      "expected_amount": 13556
+      "expected_amount": 14460
     },
     {
       "id": "PRISMARINE_SHARD",
       "name": "Prismarine Shard",
-      "expected_amount": 3835
-    },
-    {
-      "id": "PYROCLASTIC_SCALE",
-      "name": "Pyroclastic Scale",
-      "expected_amount": 72
+      "expected_amount": 3833
     },
     {
       "id": "RABBIT_HIDE",
       "name": "Rabbit Hide",
-      "expected_amount": 824
-    },
-    {
-      "id": "ROUGH_ONYX_GEM",
-      "name": "Rough Onyx Gemstone",
-      "expected_amount": 5460
+      "expected_amount": 813
     },
     {
       "id": "SAND:1",
       "name": "Red Sand",
-      "expected_amount": 3748
+      "expected_amount": 3738
     },
     {
-      "id": "SPIDER_EYE",
-      "name": "Spider Eye",
-      "expected_amount": 645
-    },
-    {
-      "id": "TIGER_SHARK_TOOTH",
-      "name": "Tiger Shark Tooth",
-      "expected_amount": 60
+      "id": "SNOW_BLOCK",
+      "name": "Snow Block",
+      "expected_amount": 3629
     },
     {
       "id": "UNDEAD_CATALYST",
       "name": "Undead Catalyst",
       "expected_amount": 21
-    },
-    {
-      "id": "YOGGIE",
-      "name": "Yoggie",
-      "expected_amount": 132
     }
   ],
-  "saved_at": 1757847050
+  "saved_at": 1757847614
 }

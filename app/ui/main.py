@@ -636,25 +636,37 @@ QFrame#card[selected=\"true\"]:hover { border: 1px solid #22f0a0; background: rg
         except Exception:
             pass
             self._log_msg(f"expected_amount güncellendi: {sid} -> {self._selected[sid]['expected_amount']}")
-
+            
     def _toggle_select(self, item_id: str, name: str):
         if not item_id:
             return
+
         if item_id in self._selected:
+            # Zaten seçiliyse kaldır
             del self._selected[item_id]
             self._log_msg(f"Seçim kaldırıldı: {item_id}")
         else:
+            # ✅ Yeni ekleme öncesi kontrol: 14 adetten fazla olamaz
+            if len(self._selected) >= 14:
+                from PySide6.QtWidgets import QMessageBox
+                QMessageBox.warning(self, "Sınır Aşıldı",
+                                    "En fazla 14 ürün seçebilirsiniz. Önce bir ürünü silin.")
+                self._log_msg("HATA: 14 üründen fazla seçim yapılamaz.")
+                return  # ekleme yapılmaz
+
             # mevcut piyasa verisinden expected_amount öner
             r = self._rows_by_id().get(item_id)
             exp = self._calc_expected_amount(r) if r else 1
             self._selected[item_id] = {"name": name or item_id, "expected_amount": int(exp)}
             self._log_msg(f"Seçildi (kaydedildi): {item_id} -> {self._selected[item_id]}")
+
         self._selected_save()
-        # seçim değişti, kartları tazele
         try:
             self._schedule_rebuild()
         except Exception:
             pass
+
+
 
     def _rows_by_id(self):
         return {str(r.get("id")): r for r in (self.raw_rows or [])}
