@@ -1,0 +1,33 @@
+
+/* Global */
+QWidget { background-color: #0f1115; color: #eaeef7; font-family: Inter, "Segoe UI", Roboto, Arial; }
+QToolTip { color:#eaeef7; background-color:#161922; border:1px solid #2a2f3a; }
+
+/* Buttons */
+QPushButton {
+  background: #1a1f2b; border: 1px solid #2b3240; border-radius: 10px; padding: 8px 12px;
+}
+QPushButton:hover { border-color: #3b7cff; background:#1b2230; }
+QPushButton:pressed { background:#131824; }
+
+/* Inputs */
+QLineEdit, QSpinBox, QDoubleSpinBox {
+  background:#11151d; border:1px solid #2a2f3a; border-radius:8px; padding:6px 8px;
+}
+QLineEdit:hover, QSpinBox:hover, QDoubleSpinBox:hover { border-color:#3b7cff; }
+
+/* Tabs */
+QTabBar::tab {
+  background:#141924; padding:8px 14px; border:1px solid #232a36; border-bottom:none; margin-right:4px; border-top-left-radius:8px; border-top-right-radius:8px;
+}
+QTabBar::tab:selected { background:#0f131c; border-color:#3b7cff; }
+
+/* Cards */
+QFrame#card { background:#121418; border:1px solid #262a33; border-radius:14px; }
+QFrame#card:hover { border:1px solid #3b7cff; }
+QLabel#key { color:#9aa3ad; }
+
+/* Scrollbars */
+QScrollBar:vertical { background:#0e121a; width:10px; }
+QScrollBar::handle:vertical { background:#2b3240; min-height:24px; border-radius:5px; }
+QScrollBar::handle:vertical:hover { background:#3b7cff; }

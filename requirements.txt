@@ -1,0 +1,7 @@
+PySide6
+pyautogui
+keyboard
+opencv-python
+numpy
+pillow
+requests
