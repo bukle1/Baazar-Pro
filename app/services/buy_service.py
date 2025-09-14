@@ -119,7 +119,7 @@ class BuyService:
         t = _safe_read_interval()
         if t > 0:
             time.sleep(t)
-
+ 
     def _click(self, xy: Tuple[int, int], label: str = ""):
         x, y = xy
         pyautogui.moveTo(x, y, duration=0)
@@ -184,22 +184,32 @@ class BuyService:
             self.log("İşlenecek item yok.")
             return
         self.log(f"{len(items)} adet item işlenecek.")
+
         for idx, it in enumerate(items, 1):
             if self._stop_evt.is_set():
                 break
+
             name = str(it.get("name") or "").strip()
             if not name:
                 self.log(f"{idx}. kayıt atlandı (isim yok).")
                 continue
+
             exp = it.get("expected_amount")
             try:
                 exp = int(exp)
             except Exception:
                 exp = 1
+
             self.log(f"[{idx}/{len(items)}] {name} → {exp}")
             try:
                 self._run_one_item(name, exp)
             except Exception as e:
                 self.log(f"Hata (item='{name}'): {e}")
                 self._sleep()
+
+            # 🔑 Her 5 işlemde 1 dakika bekle
+            if idx % 6 == 0:
+                self.log("6 adet buy order tamamlandı. 1 dakika bekleniyor...")
+                time.sleep(70)   # 60 saniye bekle
+
         self.log("BuyService tamamlandı.")

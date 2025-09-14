@@ -34,12 +34,6 @@ class Card(QFrame):
         self.on_click = on_click
         self.setObjectName("card")
         self.setProperty("selected", "true" if is_selected else "false")
-        if is_selected:
-            eff = QGraphicsDropShadowEffect(self)
-            eff.setBlurRadius(24)
-            eff.setOffset(0, 0)
-            eff.setColor(QColor(0, 224, 138))
-            self.setGraphicsEffect(eff)
         self.setAttribute(Qt.WA_Hover, True)
         lay = QVBoxLayout(self)
         lay.setContentsMargins(12,12,12,12)
@@ -57,10 +51,22 @@ class Card(QFrame):
             lf = QFont()
             lf.setPointSize(9)
             lk.setFont(lf)
+            try:
+                lk.setAttribute(Qt.WA_TranslucentBackground, True)
+                lk.setStyleSheet("background: transparent;")
+                lk.setContentsMargins(0,0,0,0)
+            except Exception:
+                pass
             lv = QLabel(v)
             vf = QFont()
             vf.setPointSize(10)
             lv.setFont(vf)
+            try:
+                lv.setAttribute(Qt.WA_TranslucentBackground, True)
+                lv.setStyleSheet("background: transparent;")
+                lv.setContentsMargins(0,0,0,0)
+            except Exception:
+                pass
             row.addWidget(lk)
             row.addStretch(1)
             row.addWidget(lv)
@@ -287,10 +293,10 @@ class MainWindow(QMainWindow):
                 # Ek seçim stili
                 try:
                     extra_css = """
-QFrame#card[selected=\"true\"] { border: 2px solid #00c774; background: rgba(0,199,116,0.06); }
-QFrame#card[selected=\"true\"]:hover { border: 2px solid #00e08a; background: rgba(0,224,138,0.10); }
+QFrame#card[selected=\"true\"] { border: 1px solid #17d88b; background: rgba(23,216,139,0.035); }
+QFrame#card[selected=\"true\"]:hover { border: 1px solid #22f0a0; background: rgba(34,240,160,0.06); }
 """
-                    self.setStyleSheet(self.styleSheet() + extra_css)
+                    self.setStyleSheet(self.styleSheet() + extra_css + "\nQFrame#card QLabel { background: transparent; }")
                 except Exception:
                     pass
         except Exception as e:
@@ -298,10 +304,10 @@ QFrame#card[selected=\"true\"]:hover { border: 2px solid #00e08a; background: rg
             # yine de seçim stilini ekle
             try:
                 extra_css = """
-QFrame#card[selected=\"true\"] { border: 2px solid #00c774; background: rgba(0,199,116,0.06); }
-QFrame#card[selected=\"true\"]:hover { border: 2px solid #00e08a; background: rgba(0,224,138,0.10); }
+QFrame#card[selected=\"true\"] { border: 1px solid #17d88b; background: rgba(23,216,139,0.035); }
+QFrame#card[selected=\"true\"]:hover { border: 1px solid #22f0a0; background: rgba(34,240,160,0.06); }
 """
-                self.setStyleSheet(self.styleSheet() + extra_css)
+                self.setStyleSheet(self.styleSheet() + extra_css + "\nQFrame#card QLabel { background: transparent; }")
             except Exception:
                 pass
 
