@@ -1,5 +1,7 @@
 import sys, json
 from pathlib import Path
+from app.services.fullauto import FullAutoService
+
 
 from PySide6.QtCore import Qt, QThread, QTimer, QSize, Slot, QFile, QTextStream
 from PySide6.QtGui import QFont, QColor
@@ -215,6 +217,10 @@ class MainWindow(QMainWindow):
             log_callback=self._log_msg,
             hotkey="f1",
         )
+        
+        
+        self.fullauto_service = FullAutoService(log_callback=self._log_msg, hotkey="insert")
+        
         
         self.buy_service = BuyService(
             log_callback=self._log_msg,

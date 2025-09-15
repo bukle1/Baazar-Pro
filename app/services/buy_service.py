@@ -20,7 +20,7 @@ SELECTED_PATH = Path("app/data/selecteditems.json")
 
 COORDS = {
     "a":  (952, 427), "a1": (940, 472), "a2": (950, 512),
-    "b":  (886, 392), "b1": (926, 391), "b2": (957, 391), "b3": (997, 391),
+    "b":  (886, 392), "b1": (926, 391), "b2": (957, 391), "b3": (997, 391),"b4": (1027, 391),
 }
 
 # Bu listeyi sen dolduracaksın. Anahtar: item adı (küçük harf), Değer: a/b varyantı
@@ -30,14 +30,14 @@ SPECIAL = {
     "Nether Wart": {"a": "a1", "b": "b2"}, 
     "Snow Block": {"b": "b1"}, 
     "Plasma": {"a": "a1"}, 
-    
-    
-    
-    
-    
-    # "nether wart": {"b": "b2"},  
-    
-    # "some item": {"a": "a1", "b": "b3"},
+    "Feather": {"a": "a1", "b": "b2"}, 
+    "Cocoa Beans": {"a": "a1"}, 
+    "Prismarine Shard": {"a": "a1", "b": "b1"}, 
+    "Jungle Log": {"a": "a1", "b": "b1"}, 
+    "Blaze Ashes": {"a": "a2"}, 
+    "Iron Ingot": {"b": "b1"}, 
+    "Sand": {"a": "a3", "b": "b4"}, 
+    "Lily Pad": {"b": "b1"}, 
 }
 
 SPECIAL = { (k or "").strip().lower(): v for k, v in SPECIAL.items() }
@@ -173,7 +173,6 @@ class BuyService:
     def _press_x(self):
         if keyboard:
             keyboard.send("x")
-        self.log("Kapatma: 'x'")
         self._sleep()
 
     def _load_items(self) -> list[dict]:
@@ -190,6 +189,8 @@ class BuyService:
             return []
 
     def _run_one_item(self, name: str, expected_amount: int):
+        # 0) Önce x e basarak bazarı aç
+        self._press_x()
         # 1) Arama alanına tıkla ve isim yaz
         self._click(self.c_search, "search")
         self._type(name)
@@ -205,11 +206,14 @@ class BuyService:
         self._type(str(int(expected_amount)), press_enter=True)
 
         # 8-9) onay tıklamaları
+        time.sleep(1)
         self._click(self.c_e, "e")
+        time.sleep(1)
         self._click(self.c_f, "f")
 
         # 10) X
         self._press_x()
+
 
     def _run(self):
         items = self._load_items()
@@ -241,8 +245,8 @@ class BuyService:
                 self._sleep()
 
             # 🔑 Her 5 işlemde 1 dakika bekle
-            if idx % 6 == 0:
-                self.log("6 adet buy order tamamlandı. 1 dakika bekleniyor...")
-                time.sleep(70)   # 60 saniye bekle
+            if idx % 5 == 0:
+                self.log("5 adet buy order tamamlandı. 1 dakika bekleniyor...")
+                time.sleep(65)   # 65 saniye bekle
 
         self.log("BuyService tamamlandı.")

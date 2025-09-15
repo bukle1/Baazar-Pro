@@ -194,44 +194,56 @@ class CollectAndSellService:
         except Exception as e:
             self.log(f"FastSell hata: {e}")
 
-    def _one_cycle(self):
-        
+    def _one_cycle(self) -> bool:
         self._press_x_and_click()
+        found_any = False
 
-        # --- GREEN: birini bulursan yeter, yoksa pas geç ---
-        green_found = False
+        # GREEN araması ...
         for gtpl in self.green_templates:
             frame = self._grab_region()
             if self._match_and_click_center(frame, gtpl):
-                green_found = True
+                
+                found_any = True
                 break
-            # küçük nefes payı
             time.sleep(0.15)
 
         time.sleep(0.45)
 
-        # --- YÜZDE: her bir tpl'i EKRANDA KALMAYANA KADAR tıkla ---
+        # YÜZDE araması ...
         for tpl in self.template_paths2:
-            # güvenlik sayaçlı sonsuz olmayan döngü (opsiyonel)
             safety = 0
             while True:
                 frame = self._grab_region()
                 if not self._match_and_click_center(frame, tpl):
                     break
+                found_any = True
                 safety += 1
-                if safety > 5:
+                if safety > 2:
                     self.log(f"Uyarı: {tpl.name} için güvenlik sınırı aşıldı.")
                     break
 
         time.sleep(0.45)
+
+        if not found_any:
+            # no_match kolu
+            self.log("Green/yüzde yok → Collect&Sell döngüsü bitiyor (orange’a geçilecek). [no_match]")
+
+            # Burada UI’dan ÇIKMA! Orange fazı aynı ekranda çalışsın.
+            self.exit_reason = "no_match"
+            return False
+
+        # En az bir şey bulunduysa normal akış + fast sell
         self._press_esc_and_click()
         self._run_fastsell_blocking()
+        return True
 
 
     def _loop_body(self):
         try:
             while not self._stop_event.is_set():
-                self._one_cycle()
+                if not self._one_cycle():   # no_match → sadece break
+                    break
                 time.sleep(0.25)
         finally:
-            self.log("Döngü durdu.")
+            self.log("Collect&Sell döngüsü durdu.")  # Thread bitti; FullAuto devam eder.
+            
